@@ -11,6 +11,7 @@ module.exports = {
   },
   devServer: {
     contentBase: path.resolve(__dirname, './example'),
+    watchContentBase: true,
   },
   module: {
     rules: [
