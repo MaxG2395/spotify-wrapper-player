@@ -1,6 +1,8 @@
+/* eslint-disable no-undef */
 import 'jsdom-global/register';
 import { expect } from 'chai';
 import renderAlbumTracks from '../src/AlbumTracks';
+import convertToHumanTime from '../src/ConvertToHumanTime';
 
 describe('Album Tracks', () => {
   const data = [
@@ -12,7 +14,7 @@ describe('Album Tracks', () => {
     },
   ];
 
-  const data_2items = [
+  const dataMultipleItems = [
     {
       preview_url: 'https://p.scdn.co/mp3-preview/ab3d501c5ffbf560e94094f76cd36d874a26e941?cid=8897482848704f2a8f8d7c79726a70d4',
       track_number: 1,
@@ -31,19 +33,19 @@ describe('Album Tracks', () => {
   <div class="music" data-track-preview="https://p.scdn.co/mp3-preview/ab3d501c5ffbf560e94094f76cd36d874a26e941?cid=8897482848704f2a8f8d7c79726a70d4">
     <p class="music-number">1</p>
     <p class="music-title">Around The World</p>
-    <p class="music-duration">238733</p>
+    <p class="music-duration">${convertToHumanTime(238733)}</p>
   </div>`;
 
-  const markup_2items = `
+  const markupMultipleItems = `
   <div class="music" data-track-preview="https://p.scdn.co/mp3-preview/ab3d501c5ffbf560e94094f76cd36d874a26e941?cid=8897482848704f2a8f8d7c79726a70d4">
     <p class="music-number">1</p>
     <p class="music-title">Around The World</p>
-    <p class="music-duration">238733</p>
+    <p class="music-duration">${convertToHumanTime(238733)}</p>
   </div>
   <div class="music" data-track-preview="https://p.scdn.co/mp3-preview/ab3d501c5ffbf560e94094f76cd36d874a26e941?cid=8897482848704f2a8f8d7c79726a70d4">
     <p class="music-number">1</p>
     <p class="music-title">Around The World</p>
-    <p class="music-duration">238733</p>
+    <p class="music-duration">${convertToHumanTime(238733)}</p>
   </div>`;
 
   it('should create and append the markup given a correct data', () => {
@@ -55,8 +57,8 @@ describe('Album Tracks', () => {
 
   it('should create and append the markup given more than 1 item', () => {
     const element = document.createElement('div');
-    renderAlbumTracks(data_2items, element);
+    renderAlbumTracks(dataMultipleItems, element);
 
-    expect(element.innerHTML).to.eql(markup_2items);
+    expect(element.innerHTML).to.eql(markupMultipleItems);
   });
 });
