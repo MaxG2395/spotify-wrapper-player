@@ -2,7 +2,9 @@
 import spotify from './Spotify';
 import renderAlbums from './AlbumList';
 import renderAlbumInfo from './AlbumInfo';
-import renderAlbumTracks from './AlbumTracks';
+import searchEnterTrigger from './SearchTrigger';
+
+searchEnterTrigger();
 
 const albumList = spotify.search.albums('I Love You');
 const albumListComponent = document.getElementById('album-list');

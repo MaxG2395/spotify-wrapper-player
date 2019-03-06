@@ -61,4 +61,8 @@ describe('Album Tracks', () => {
 
     expect(element.innerHTML).to.eql(markupMultipleItems);
   });
+
+  it('should return the id when given a correct data', () => {
+    expect('').to.be.equal('');
+  });
 });
